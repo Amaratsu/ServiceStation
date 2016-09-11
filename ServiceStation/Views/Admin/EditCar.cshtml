@@ -1,0 +1,14 @@
+﻿@model Domain.Entities.Car
+
+@{
+    ViewBag.Title = "Admin: Edit " + @Model.Make + @Model.Model;
+    Layout = "~/Views/_AdminLagout.cshtml";
+}
+
+<h1>Edit @Model.Make @Model.Model</h1>
+@using (Html.BeginForm("EditCar", "Admin"))
+{
+    @Html.EditorForModel()
+    <input type="submit" value="Save"/>
+    @Html.ActionLink("Cancel and return to List", "IndexCar")
+}

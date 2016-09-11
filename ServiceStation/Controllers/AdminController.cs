@@ -30,11 +30,6 @@ namespace ServiceStation.Controllers
             return View(card);
         }
 
-        //public ViewResult Index()
-        //{
-        //    return View(db.Cards);
-        //}
-
         public ActionResult Description(int id)
         {
             return View("Description", db.Cards.FirstOrDefault(c => c.Id == id));
@@ -87,9 +82,67 @@ namespace ServiceStation.Controllers
             return deleteCard;
         }
 
-        public ActionResult Index2()
+        //public ActionResult IndexCar()
+        //{
+        //    return View(db.Cars.ToList());
+        //}
+
+        public ActionResult EditCar(int? id)
         {
-            return View(db.Cars.ToList());
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Car car = db.Cars.Find(id);
+            if (car != null)
+            {
+                return View(car);
+            }
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult EditCar(Car car)
+        {
+            db.Entry(car).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("IndexCar");
+        }
+
+        [HttpGet]
+        public ActionResult CreateCar()
+        {
+            return View("IndexCar");
+        }
+        [HttpPost]
+        public ActionResult CreateCar(Car car)
+        {
+            db.Cars.Add(car);
+            db.SaveChanges();
+            return RedirectToAction("IndexCar");
+        }
+
+        [HttpPost]
+        public Car DeleteCar(int id)
+        {
+            Car deleteCar = db.Cars.Find(id);
+            if (deleteCar != null)
+            {
+                db.Cars.Remove(deleteCar);
+                db.SaveChanges();
+            }
+            return deleteCar;
+        }
+
+        public ActionResult IndexCar(string searchString)
+        {
+            var car = from c in db.Cars select c;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                car = car.Where(x => x.Make.Contains(searchString));
+
+            }
+            return View(car);
         }
     }
 }

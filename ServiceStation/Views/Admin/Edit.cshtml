@@ -1,0 +1,14 @@
+﻿@model Domain.Entities.Card
+
+@{
+    ViewBag.Title = "Admin: Edit " + @Model.FirstName + @Model.LastName;
+    Layout = "~/Views/_AdminLagout.cshtml";
+}
+
+<h1>Edit @Model.FirstName @Model.LastName</h1>
+@using (Html.BeginForm("Edit", "Admin"))
+{
+    @Html.EditorForModel()
+    <input type="submit" value="Save"/>
+    @Html.ActionLink("Cancel and return to List", "Index")
+}

@@ -1,0 +1,59 @@
+﻿@model Domain.Entities.Card
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Description</title>
+</head>
+<body>
+<div>
+    <div>
+        <h1 >@Model.FirstName @Model.LastName</h1>
+    </div>
+    <div>
+        <p><b >DateOfBirth:</b> @Model.DateOfBirth</p>
+        <p><b >Address:</b> @Model.Address</p>
+        <p><b >Phone:</b> @Model.Phone</p>
+        <p><b >Email:</b> @Model.Email</p> 
+            <table class="table">
+                <tr>
+                    <th>
+                        <p>Make</p>
+                    </th>
+                    <th>
+                        <p>Model</p>
+                    </th>
+                    <th>
+                        <p>Year</p>
+                    </th>
+                    <th>
+                        <p>VIN</p>
+                    </th>
+                </tr>
+                @foreach (var car in Model.Cars)
+                {
+                    <tr>
+                        <td>
+                            <p>@car.Make</p>
+                        </td>
+                        <td>
+                            <p>@car.Model
+                        </td>
+                        <td>
+                            <p>@car.Year</p>
+                        </td>
+                        <td>
+                            <p>@car.Vin</p>
+                        </td>
+                    </tr>
+                }
+            </table>
+    </div>
+</div>
+</body>
+</html>

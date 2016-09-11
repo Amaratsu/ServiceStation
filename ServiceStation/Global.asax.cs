@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 using Domain.Model;
 using Ninject.Web.Mvc;
 using ServiceStation.Infrastructure;
@@ -26,7 +27,7 @@ namespace ServiceStation
             AreaRegistration.RegisterAllAreas();
             DependencyResolver.SetResolver(new NinjectDependecyResolver());
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
+            
         }
     }
 }

@@ -225,6 +225,9 @@
     <Content Include="Views\Admin\IndexCar.cshtml" />
     <Content Include="Views\Admin\EditCar.cshtml" />
     <Content Include="Views\Admin\CreateCar.cshtml" />
+    <Content Include="Views\Admin\IndexOrder.cshtml" />
+    <Content Include="Views\Admin\EditOrder.cshtml" />
+    <Content Include="Views\Admin\CreateOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

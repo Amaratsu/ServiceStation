@@ -144,5 +144,79 @@ namespace ServiceStation.Controllers
             }
             return View(car);
         }
+
+        public ActionResult IndexOrder()
+        {
+            return View(db.Orders.ToList());
+        }
+
+        public ActionResult EditOrder(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Order order = db.Orders.Find(id);
+            if (order != null)
+            {
+                return View(order);
+            }
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult EditOrder(Order order)
+        {
+            db.Entry(order).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("IndexOrder");
+        }
+
+        [HttpGet]
+        public ActionResult CreateOrder()
+        {
+            return View("IndexOrder");
+        }
+        [HttpPost]
+        public ActionResult CreateOrder(Order order)
+        {
+            db.Orders.Add(order);
+            db.SaveChanges();
+            return RedirectToAction("IndexOrder");
+        }
+
+        [HttpPost]
+        public Order DeleteOrder(int id)
+        {
+            Order deleteOrder = db.Orders.Find(id);
+            if (deleteOrder != null)
+            {
+                db.Orders.Remove(deleteOrder);
+                db.SaveChanges();
+            }
+            return deleteOrder;
+        }
+        //in progress
+    //    public ActionResult IndexOrder(bool orderStatus, da searchString)
+    //    {
+    //        var GenreQry = from m in db.Orders
+    //                       orderby m.OrderStatus
+    //                       select m.OrderStatus;
+    //        var GenreList = new List<string>();
+    //        GenreList.AddRange(GenreQry.Distinct());
+    //        ViewData["orderStatus"] = new SelectList(GenreList);
+
+    //        var order = from m in db.Orders
+    //                  select m;
+    //        if (!String.IsNullOrEmpty(searchString))
+    //        {
+    //            order = order.Where(s => s.Date.Contains(searchString));
+    //        }
+    //        if (!string.IsNullOrEmpty(orderStatus))
+    //        {
+    //            order = order.Where(x => x.OrderStatus == orderStatus);
+    //        }
+    //        return View(order);
+    //    }
     }
 }

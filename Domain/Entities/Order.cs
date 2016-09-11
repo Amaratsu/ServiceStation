@@ -6,10 +6,10 @@ namespace Domain.Entities
 {
     public class Order
     {
-        public int Id { get; set; }//Id заказа
-        public DateTime Date { get; set; }//дата
-        public decimal OrderAmount { get; set; }//сумма заказа
-        public OrderStatus OrderStatus { get; set; }//статус заказа
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public decimal OrderAmount { get; set; }
+        public OrderStatus OrderStatus { get; set; }
         public int? CardId { get; set; }
         public Card Card { get; set; }
         public virtual ICollection<Car> Cars { get; set; }

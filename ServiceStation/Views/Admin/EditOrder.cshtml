@@ -1,0 +1,14 @@
+﻿@model Domain.Entities.Order
+
+@{
+    ViewBag.Title = "Admin: Edit " + @Model.Id;
+    Layout = "~/Views/_AdminLagout.cshtml";
+}
+
+<h1>Edit @Model.Id @Model.Date</h1>
+@using (Html.BeginForm("EditOrder", "Admin"))
+{
+    @Html.EditorForModel()
+    <input type="submit" value="Save"/>
+    @Html.ActionLink("Cancel and return to List", "IndexOrder")
+}
